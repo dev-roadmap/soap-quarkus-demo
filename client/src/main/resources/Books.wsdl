@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://server.soap.roadmap.dev.com.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="BooksService" targetNamespace="http://server.soap.roadmap.dev.com.br/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://server.soap.roadmap.dev.com.br/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://server.soap.roadmap.dev.com.br/" version="1.0">
+            <xs:element name="book" type="tns:Book"/>
+            <xs:complexType name="Book">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="authors" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="id" type="xs:long"/>
+                    <xs:element minOccurs="0" name="isbn" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="add" type="tns:add"/>
+            <xs:complexType name="add">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="tns:Book"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="addResponse" type="tns:addResponse"/>
+            <xs:complexType name="addResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:Book"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="all" type="tns:all"/>
+            <xs:complexType name="all">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:element name="allResponse" type="tns:allResponse"/>
+            <xs:complexType name="allResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Book"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="search" type="tns:search"/>
+            <xs:complexType name="search">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="searchResponse" type="tns:searchResponse"/>
+            <xs:complexType name="searchResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Book"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="remove" type="tns:remove"/>
+            <xs:complexType name="remove">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="arg0" type="tns:Book"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="removeResponse" type="tns:removeResponse"/>
+            <xs:complexType name="removeResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:Book"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="removeResponse">
+        <wsdl:part element="tns:removeResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="remove">
+        <wsdl:part element="tns:remove" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="allResponse">
+        <wsdl:part element="tns:allResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="add">
+        <wsdl:part element="tns:add" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="all">
+        <wsdl:part element="tns:all" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="search">
+        <wsdl:part element="tns:search" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="addResponse">
+        <wsdl:part element="tns:addResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="searchResponse">
+        <wsdl:part element="tns:searchResponse" name="parameters">
+    </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="Books">
+        <wsdl:operation name="add">
+            <wsdl:input message="tns:add" name="add">
+    </wsdl:input>
+            <wsdl:output message="tns:addResponse" name="addResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="all">
+            <wsdl:input message="tns:all" name="all">
+    </wsdl:input>
+            <wsdl:output message="tns:allResponse" name="allResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="search">
+            <wsdl:input message="tns:search" name="search">
+    </wsdl:input>
+            <wsdl:output message="tns:searchResponse" name="searchResponse">
+    </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="remove">
+            <wsdl:input message="tns:remove" name="remove">
+    </wsdl:input>
+            <wsdl:output message="tns:removeResponse" name="removeResponse">
+    </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BooksServiceSoapBinding" type="tns:Books">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="add">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="add">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="addResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="all">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="all">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="allResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="search">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="search">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="remove">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="remove">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="removeResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="BooksService">
+        <wsdl:port binding="tns:BooksServiceSoapBinding" name="BooksPort">
+            <soap:address location="http://localhost:8080/library/books?wsdl"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
